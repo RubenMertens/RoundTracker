@@ -12,6 +12,16 @@ public class RoundEntity { //todo rework logic here
     public RoundEntity() {
     }
 
+    @Override
+    public String toString() {
+        return "RoundEntity{" +
+                "name='" + name + '\'' +
+                ", initiativeRoll=" + initiativeRoll +
+                ", initiativeModifier=" + initiativeModifier +
+                ", health=" + health +
+                '}';
+    }
+
     public RoundEntity(String name, Integer initiativeRoll, Integer initiativeModifier, Integer health) {
         this.name = name;
         this.initiativeRoll = initiativeRoll;

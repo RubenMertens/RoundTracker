@@ -34,7 +34,7 @@ public class GameService {
         return returnMap;
     }
     
-    public List<RoundEntity> getRoundSortedByInitiative(){
+    public List<RoundEntity> getRoundSortedByInitiative(){ //todo no double sort!
        List<RoundEntity> sortedList =  new ArrayList<>(this.roundEntities.keySet());
                sortedList.sort((e1,e2) -> {
             if(e1.getFullInitiative() == e2.getFullInitiative()){
@@ -43,6 +43,7 @@ public class GameService {
                 return e1.getFullInitiative() - e2.getFullInitiative();
             }
         });
+
         return sortedList;
     }
     
