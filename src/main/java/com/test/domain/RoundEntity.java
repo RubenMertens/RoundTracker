@@ -9,7 +9,15 @@ public class RoundEntity { //todo rework logic here
     private Integer initiativeModifier;
     private Integer health;
 
+    public RoundEntity(String name, Integer initiativeRoll, Integer initiativeModifier, Integer health) {
+        this.name = name;
+        this.initiativeRoll = initiativeRoll;
+        this.initiativeModifier = initiativeModifier;
+        this.health = health;
+    }
+
     public RoundEntity() {
+        this("",0,0,0);
     }
 
     @Override
@@ -22,12 +30,7 @@ public class RoundEntity { //todo rework logic here
                 '}';
     }
 
-    public RoundEntity(String name, Integer initiativeRoll, Integer initiativeModifier, Integer health) {
-        this.name = name;
-        this.initiativeRoll = initiativeRoll;
-        this.initiativeModifier = initiativeModifier;
-        this.health = health;
-    }
+
 
     public Integer getFullInitiative(){
         return this.initiativeModifier + this.initiativeRoll;
