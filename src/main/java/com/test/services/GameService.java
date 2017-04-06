@@ -22,9 +22,6 @@ public class GameService {
         this.round.addRoundEntity(roundEntity);
     }
 
-    public void addRoundEntityToBuffer(RoundEntity roundEntity){
-        this.round.addRoundEntityToBuffer(roundEntity);
-    }
 
     public void sortRound(){
         this.round.sortRoundByInitiative();
@@ -35,6 +32,7 @@ public class GameService {
     }
 
 
-
-
+    public void nextTurn() {
+        this.round.nextTurn();
+    }
 }

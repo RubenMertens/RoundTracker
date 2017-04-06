@@ -146,7 +146,7 @@ public class InitiativeApplicationTests {
 		assertTrue(first.equals(round.getCurrentRoundEntity()));
 		round.nextTurn();
 		assertEquals("Counter should be 0",0,round.getRoundCounter());
-		round.addRoundEntityToBuffer(fourth);
+		round.addRoundEntity(fourth);
 		assertTrue(second.equals(round.getCurrentRoundEntity()));
 		round.nextTurn();
 		assertTrue(third.equals(round.getCurrentRoundEntity()));

@@ -4,5 +4,5 @@ package com.test.websockets.messages;
  * Created by Ravanys on 21/03/2017.
  */
 public enum MessageType {
-    INITIATIVE_IN, INITIATIVE_OUT,REGISTER_USER, REGISTER_ROUNDENTITY, ROUND_LIST
+    ADD_ROUND_ENTITY, ROUND_OUT, SORT_ROUND, NEXT_TURN
 }

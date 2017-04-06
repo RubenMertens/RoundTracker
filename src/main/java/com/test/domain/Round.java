@@ -19,15 +19,18 @@ public class Round {
     }
 
     public void addRoundEntity(RoundEntity roundEntity){
-
-        if(roundList.contains(roundEntity)){
-            roundList.set(roundList.indexOf(roundEntity),roundEntity);
+        if(this.roundFirstEntity != null && !this.roundFirstEntity.equals(this.getCurrentRoundEntity())){
+            addRoundEntityToBuffer(roundEntity);
         }else{
-            roundList.add(roundEntity);
+            if(roundList.contains(roundEntity)){
+                roundList.set(roundList.indexOf(roundEntity),roundEntity);
+            }else{
+                roundList.add(roundEntity);
+            }
         }
     }
 
-    public void addRoundEntityToBuffer(RoundEntity roundEntity){
+    private void addRoundEntityToBuffer(RoundEntity roundEntity){
         buffer.add(roundEntity);
     }
 
