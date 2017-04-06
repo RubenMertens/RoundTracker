@@ -2,6 +2,7 @@ package com.test.websockets;
 
 import com.test.domain.RoundEntity;
 import com.test.services.GameService;
+import com.test.websockets.messages.ConditionWrapper;
 import com.test.websockets.messages.MessageType;
 import com.test.websockets.messages.MessageWrapper;
 import org.springframework.web.socket.TextMessage;
@@ -40,6 +41,13 @@ public class SessionHandler {
                 break;
             case NEXT_TURN:
                 this.gameService.nextTurn();
+                break;
+            case RESET:
+                this.gameService.reset();
+                break;
+            case ADD_CONDITION:
+                ConditionWrapper conditionWrapper = GSON.fromJson(wrapper.getMessage(),ConditionWrapper.class);
+                this.gameService.addCondition(conditionWrapper.getName(),conditionWrapper.getCondition());
                 break;
         }
         try {

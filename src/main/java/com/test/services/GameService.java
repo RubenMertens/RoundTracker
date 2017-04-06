@@ -1,5 +1,6 @@
 package com.test.services;
 
+import com.test.domain.Condition;
 import com.test.domain.Round;
 import com.test.domain.RoundEntity;
 import org.springframework.stereotype.Service;
@@ -34,5 +35,13 @@ public class GameService {
 
     public void nextTurn() {
         this.round.nextTurn();
+    }
+
+    public void reset(){
+        this.round = new Round();
+    }
+
+    public void addCondition(String name, Condition condition){
+        this.round.getRoundList().get(this.round.getRoundList().indexOf(new RoundEntity(name,0,0,0))).addCondition(condition);
     }
 }
