@@ -1,5 +1,6 @@
 package com.test;
 
+import com.test.domain.Condition;
 import com.test.domain.Round;
 import com.test.domain.RoundEntity;
 import org.junit.Before;
@@ -156,6 +157,19 @@ public class InitiativeApplicationTests {
 		assertTrue("should be " + first.getName() + " but is " + round.getCurrentRoundEntity().getName(), first.equals(round.getCurrentRoundEntity()));
 		assertEquals("Counter should still be 1",1,round.getRoundCounter());
 
+	}
+
+	@Test
+	public void testConditiondecrease(){
+		RoundEntity first = new RoundEntity("first",0,0,0);
+		round.addRoundEntity(first);
+		Condition condition = new Condition(2,"a condition");
+		round.getCurrentRoundEntity().addCondition(condition);
+		assertEquals("Condition amount of turns should be 2" ,2,round.getCurrentRoundEntity().getConditions().get(0).getNumberOfTurns());
+		round.nextTurn();
+		assertEquals("Condition amount of turns should be 1" , 1 , round.getCurrentRoundEntity().getConditions().get(0).getNumberOfTurns());
+		round.nextTurn();
+		assertEquals("Condition list should be empty now",0, round.getCurrentRoundEntity().getConditions().size());
 	}
 
 

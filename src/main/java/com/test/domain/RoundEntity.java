@@ -1,5 +1,8 @@
 package com.test.domain;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by Ravanys on 22/03/2017.
  */
@@ -8,12 +11,14 @@ public class RoundEntity { //todo rework logic here
     private Integer initiativeRoll;
     private Integer initiativeModifier;
     private Integer health;
+    private List<Condition> conditions;
 
     public RoundEntity(String name, Integer initiativeRoll, Integer initiativeModifier, Integer health) {
         this.name = name;
         this.initiativeRoll = initiativeRoll;
         this.initiativeModifier = initiativeModifier;
         this.health = health;
+        this.conditions = new ArrayList<>();
     }
 
     public RoundEntity() {
@@ -27,10 +32,17 @@ public class RoundEntity { //todo rework logic here
                 ", initiativeRoll=" + initiativeRoll +
                 ", initiativeModifier=" + initiativeModifier +
                 ", health=" + health +
+                ", conditions=" + conditions +
                 '}';
     }
 
+    public void addCondition(Condition condition){
+        this.conditions.add(condition);
+    }
 
+    public List<Condition> getConditions() {
+        return conditions;
+    }
 
     public Integer getFullInitiative(){
         return this.initiativeModifier + this.initiativeRoll;

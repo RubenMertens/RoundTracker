@@ -53,6 +53,16 @@ public class Round {
         RoundEntity first = roundList.getFirst();
         roundList.removeFirst();
         roundList.addLast(first);
+        if(first.getConditions().size() > 0){
+            List<Condition> conditions = first.getConditions();
+            for (int i = 0; i < conditions.size(); i++) {
+                Condition condition = conditions.get(i);
+                condition.decreaseNumberOfTurns();
+                if (condition.getNumberOfTurns() <= 0) {
+                    conditions.remove(condition);
+                }
+            }
+        }
         if(roundList.getFirst().equals(this.roundFirstEntity)){
             roundCounter++;
             mergeBufferToRoundList();
