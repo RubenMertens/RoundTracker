@@ -6,7 +6,7 @@ import java.util.List;
 /**
  * Created by Ravanys on 22/03/2017.
  */
-public class RoundEntity { //todo rework logic here
+public class RoundEntity {
     private String name;
     private Integer initiativeRoll;
     private Integer initiativeModifier;

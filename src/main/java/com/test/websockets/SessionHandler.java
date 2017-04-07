@@ -23,11 +23,13 @@ public class SessionHandler {
 
     private WebSocketSession session;
     private String id;
+    private WebSocketHandler webSocketHandler;
 
-    public SessionHandler(GameService gameService, WebSocketSession session, String id) {
+    public SessionHandler(GameService gameService, WebSocketSession session, String id, WebSocketHandler webSocketHandler) {
         this.gameService = gameService;
         this.session = session;
         this.id = id;
+        this.webSocketHandler = webSocketHandler;
     }
 
     public void handleMessage(MessageWrapper wrapper) {
@@ -58,14 +60,26 @@ public class SessionHandler {
     }
 
     private void sendRoundList() throws IOException {
-        send(MessageType.ROUND_OUT,GSON.toJson(this.gameService.getRound()));
+//        send(MessageType.ROUND_OUT,GSON.toJson(this.gameService.getRound()));
+        webSocketHandler.sendToAll(MessageType.ROUND_OUT,GSON.toJson(this.gameService.getRound()));
     }
 
 
-
-    private void send(MessageType messageType, String message) throws IOException { //todo rework to send to every client
+    public  void send(MessageType messageType, String message) throws IOException { //todo rework to send to every client
         TextMessage textMessage = new TextMessage(GSON.toJson(new MessageWrapper(messageType,message)));
-        session.sendMessage(textMessage);
-        System.out.println("message of type " + messageType +" sent");
+        if(session.isOpen()){
+            session.sendMessage(textMessage);
+            System.out.println("message of type " + messageType +" sent");
+        }else{
+            System.out.println("session "+ session.getId() + " was not open!");
+        }
+    }
+
+    public boolean isSessionOpen(){
+        return session.isOpen();
+    }
+
+    public String getSessionId(){
+        return session.getId();
     }
 }

@@ -23,4 +23,6 @@ public class WebSocketConfig implements WebSocketConfigurer{
     public void registerWebSocketHandlers(WebSocketHandlerRegistry webSocketHandlerRegistry) {
         webSocketHandlerRegistry.addHandler(webSocketHandler,"/game").setAllowedOrigins("*");
     }
+
+
 }
